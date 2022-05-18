@@ -10,13 +10,6 @@ adj(4,5).
 
 adjacent(X,Y):-adj(X,Y);adj(Y,X).
 
-% definition des couleurs :
-couleur(blue).
-couleur(red).
-couleur(green).
-couleur(yellow).
-couleur(red).
-
 % colorage 1
 color(1,blue,c1).
 color(2,red,c1).
