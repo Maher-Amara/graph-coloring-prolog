@@ -7,7 +7,6 @@ adj(2,3).
 adj(2,4).
 adj(3,4).
 adj(4,5).
-
 adjacent(X,Y):-adj(X,Y);adj(Y,X).
 
 % colorage 1

@@ -1,29 +1,31 @@
-adjacent( 1, 3 ).
-adjacent( 1, 4 ).
-adjacent( 1, 5 ).
-adjacent( 2, 3 ).
-adjacent( 2, 4 ).
-adjacent( 3, 4 ).
-adjacent( 4, 5 ).
+% definition du graphe
+adjacent(1,_).
+adjacent(2,3).
+adjacent(2,4).
+adjacent(3,4).
+adjacent(4,5).
 
-color( red ).
-color( yellow ).
-color( pink ).
-color( purple ).
+% definition des couleurs
+couleur( vert ).
+couleur( bleu ).
+couleur( rouge ).
+couleur( violet ).
 
+% trouver les regions en conflit:
+conflit(couleur( Region1, Couleur ), couleur( Region2, Couleur )) :-
+    adjacent( Region1, Region2 ).
 
-conflict( color( Node1, Color ), color( Node2, Color )) :-
-       adjacent( Node1, Node2 ).
+% vérifier si un coloriage du graphe est valide:
+nonconflit( _, [] ).
+nonconflit( Colorage1, [Colorage2 | Colorages] ) :-
+    not( conflit( Colorage1, Colorage2 )),
+    nonconflit( Colorage1, Colorages ).
 
+trouvercolorage( [], [] ).
+trouvercolorage( [Region | Regions], [Colorage | Colorages] ) :-
+    trouvercolorage( Regions, Colorages ),
+    Colorage = couleur( Region, Couleur),
+    couleur( Couleur),
+    nonconflit( Colorage, Colorages ).
 
-noconflict( _, [] ).
-noconflict( Coloring1, [Coloring2 | Colorings] ) :-
-    not( conflict( Coloring1, Coloring2 )),
-        noconflict( Coloring1, Colorings ).
-
-findcoloring( [], [] ).
-findcoloring( [Node | Nodes], [Coloring | Colorings] ) :-
-    findcoloring( Nodes, Colorings ),
-    Coloring = color( Node, Color ),
-    color( Color ),
-    noconflict( Coloring, Colorings ).
+% trouvercolorage( [1,2,3,4,5], L ).
