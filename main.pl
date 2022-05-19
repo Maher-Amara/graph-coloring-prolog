@@ -1,9 +1,13 @@
 % definition du graphe
-adjacent(1,_).
-adjacent(2,3).
-adjacent(2,4).
-adjacent(3,4).
-adjacent(4,5).
+adj(1,2).
+adj(1,3).
+adj(1,4).
+adj(1,5).
+adj(2,3).
+adj(2,4).
+adj(3,4).
+adj(4,5).
+adjacent(X,Y):-adj(X,Y);adj(Y,X).
 
 % definition des couleurs
 couleur( vert ).
